@@ -5,8 +5,8 @@
           
           <h1 class="jq-clearfix">.ready()</h1>
           <div class="entry-meta jq-clearfix">
-                        Categories:
-            <span class="category"><a href="http://api.jquery.com/category/events/" title="View all posts in Events">Events</a> &gt; <a href="http://api.jquery.com/category/events/document-loading/" title="View all posts in Document Loading">Document Loading</a></span>
+                        Categorias:
+            <span class="category"><a href="http://api.jquery.com/category/events/" title="Ver todos os posts em Events">Events</a> &gt; <a href="http://api.jquery.com/category/events/document-loading/" title="Ver todos os posts em Document Loading">Document Loading</a></span>
   
 
           </div>
@@ -14,40 +14,83 @@
 </div>
 <div id="ready1" class="entry method">
 <h2 class="jq-clearfix roundTop section-title">
-<span class="name">.ready( handler )</span> <span class="returns">Returns: <a class="return" href="http://api.jquery.com/Types/#jQuery">jQuery</a></span>
+<span class="name">.ready( handler )</span> <span class="returns">Retorna: <a class="return" href="http://api.jquery.com/Types/#jQuery">jQuery</a></span>
 </h2>
 <div class="jq-box roundBottom entry-details">
-<p class="desc"><strong>Description: </strong>Specify a function to execute when the DOM is fully loaded.</p>
+<p class="desc"><strong>Descrição: </strong>Especifica a função a ser executada quando o DOM estiver totalmente carregado.</p>
 <ul class="signatures"><li class="signature" id="ready-handler">
 <h4 class="name">
-<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.ready( handler )</h4>
-<p class="arguement"><strong>handler</strong>A function to execute after the DOM is ready.</p>
+<span class="versionAdded">versão em que foi adicionada: <a href="/category/version/1.0/">1.0</a></span>.ready( handler )</h4>
+<p class="arguement"><strong>handler</strong>Função a ser executada depois que o DOM estiver pronto.</p>
 </li></ul>
 <div class="longdesc">
-<p>While JavaScript provides the <code>load</code> event for executing code when a page is rendered, this event does not get triggered until all assets such as images have been completely received. In most cases, the script can be run as soon as the DOM hierarchy has been fully constructed. The handler passed to <code>.ready()</code> is guaranteed to be executed after the DOM is ready, so this is usually the best place to attach all other event handlers and run other jQuery code.  When using scripts that rely on the value of CSS style properties, it's important to reference external stylesheets or embed style elements before referencing the scripts.</p>
-<p>In cases where code relies on loaded assets (for example, if the dimensions of an image are required), the code should be placed in a handler for the <code>load</code> event instead.</p>
-<blockquote><p>The <code>.ready()</code> method is generally incompatible with the <code>&lt;body onload=""&gt;</code> attribute. If <code>load</code> must be used, either do not use <code>.ready()</code> or use jQuery's <code>.load()</code> method to attach <code>load</code> event handlers to the window or to more specific items, like images.
-</p></blockquote>
-<p>All three of the following syntaxes are equivalent:</p>
+<p>
+	Enquanto o Javascript fornece o evento <code>load</code> para executar um código quando a página é renderizada, este evento não é disparado
+	enquando todos ativos como imagens sejam totalmente recebidos. Na maioria dos casos, o script pode ser executado assim que toda a hierarquia
+	DOM for construída. O handler passado para <code>.ready()</code> é garantido que será executado após o DOM estiver pronto, por isso este é 
+	geralmente o melhor lugar para anexar todos os outros manipuladores de evento e executar outros códigos jQuery.
+	Quando se utiliza scripts que dependem do valor propriedades de stilo CSS, é importante fazer referência a folhas de estilo externas ou 
+	estilo de embutir elementos antes de referenciar os scripts.
+</p>
+<p>
+	Nos casos quando o código depende de ativos carregados (como por exemplo, se as dimensões de uma imagem são necessárias), o código deve ser
+	colocado em um manipulador (handler) em vez de um evento <code>load</code>.
+</p>
+
+<blockquote>
+	<p>O método <code>.ready()</code> é geralmente incompatível com o atributo <code>&lt;body onload=""&gt;</code>.
+	Se o <code>load</code> precisar ser usado, então não use os métodos <code>.ready()</code> ou jQuery <code>.load()</code> para atachar
+	manipuladores de evento <code>load</code> para a janela ou mais itens específicos, como imagens.
+</p>
+</blockquote>
+
+<p>
+	Todos as três sintaxes seguintes são equivalentes: 
+</p>
+
 <ul>
 <li><code>$(document).ready(handler)</code></li>
    <li>
-<code>$().ready(handler)</code> (this is not recommended)</li>
+<code>$().ready(handler)</code> (esta não é recomendada)</li>
    <li><code>$(handler)</code></li>
  </ul>
-<p>There is also <code>$(document).bind("ready", handler)</code>. This behaves similarly to the ready method but with one exception: If the ready event has already fired and you try to <code>.bind("ready")</code> the bound handler will not be executed. Ready handlers bound this way are executed <em>after</em> any bound by the other three methods above.</p>
-<p>The <code>.ready()</code> method can only be called on a jQuery object matching the current document, so the selector can be omitted.</p>
-<p>The <code>.ready()</code> method is typically used with an anonymous function:</p>
+ 
+ <p>
+ 	Há também o <code>$(document).bind("ready", handler)</code>. Este se comporta de maneira semelhanete ao método <code>.ready()</code> mas com
+ 	uma exceção: Se o evento <code>.ready()</code> tenha sido disparado e você tente usar <code>.bind("ready")</code> o manipulador vinculado 
+ 	não será executado. Manipuladores para <code>.ready()</code> ligados desta forma são executados <em>depois</em> de qualquer obrigado
+ 	pelos outros três métodos acima. 
+ </p>
+ <p>
+ 	The método <code>.ready()</code> somente pode ser chamado por um objeto jQuery combinando o documento corrente, de modo que o seletor pode
+ 	ser omitido.
+ </p>
+<p>
+	O método <code>.ready()</code> é tipicamente usado com uma função anônima:
+</p>
+
 <pre>$(document).ready(function() {
-  // Handler for .ready() called.
+  // Manipulador para .ready() chamado.
 });</pre>
-<p>Which is equivalent to calling:</p>
+<p>Que é equivalente a chamada:</p>
 <pre>$(function() {
- // Handler for .ready() called.
+ // Manipulador para .ready() chamado.
 });</pre>
-<p>If <code>.ready()</code> is called after the DOM has been initialized, the new handler passed in will be executed immediately.</p>
-<h4>Aliasing the jQuery Namespace</h4>
-<p>When using another JavaScript library, we may wish to call <code><a href="/jQuery.noConflict">$.noConflict()</a></code> to avoid namespace difficulties. When this function is called, the <code>$</code> shortcut is no longer available, forcing us to write <code>jQuery</code> each time we would normally write <code>$</code>. However, the handler passed to the <code>.ready()</code> method can take an argument, which is passed the global <code>jQuery</code> object. This means we can rename the object within the context of our <code>.ready()</code> handler without affecting other code:</p>
+
+<p>
+	Se <code>.ready()</code> é chamado depois que o DOM tenha sido inicializado, o novo manipulador passado será executado imediatamente.
+</p>
+
+<h4>Alias o nome de domínio <i>(namespace)</i> do jQuery</h4>
+
+<p>
+	Quando usamos outra biblioteca Javascript, nos podemos chamar <code><a href="/jQuery.noConflict">$.noConflict()</a></code> para evitar
+	problemas com nome de domínio (namespace). Quando a função é chamada, o atalho <code>$</code> não fica mais disponível, nos forçando a
+	escrever <code>jQuery</code> cada vez que normalmente escreveríamos <code>$</code>. No entando o manipulador passado para o método
+	<code>.ready()</code> pode pegar um argumento, que é passado o objeto <code>jQuery</code> global. Isto significa que podemos mudar o 
+	nome do objeto dentro do contexto de nosso manipulador <code>.ready()</code> sem afetar outros códigos.
+</p>
+
 <pre>jQuery(document).ready(function($) {
   // Code using $ as usual goes here.
 });</pre>
